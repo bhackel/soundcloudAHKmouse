@@ -50,7 +50,7 @@ return
 	Volume control
 	increase/decrease volume with scroll wheel and if shift is enabled
 */
-WheelUp::
+~WheelUp::
 	if (shiftToggle) {
 		send {shift down}
 		send {up}
@@ -58,10 +58,10 @@ WheelUp::
 	}
 Return
 
-WheelDown::
+~WheelDown::
 	if (shiftToggle) {
 		send {shift down}
-		send {up}
+		send {down}
 		send {shift up}
 	}
 Return
