@@ -35,6 +35,7 @@ XButton1::
 return
     
 XButton2::
+    sleep 50
     if (shiftToggle) { 
         send {shift down}
         send {right}
@@ -51,6 +52,7 @@ return
 	increase/decrease volume with scroll wheel and if shift is enabled
 */
 ~WheelUp::
+    sleep 50
 	if (shiftToggle) {
 		send {shift down}
 		send {up}
