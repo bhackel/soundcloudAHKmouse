@@ -3,9 +3,11 @@
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
+; format: month/day/year
 ; na/na/na created
 ; 1/31/19 added middle mouse to toggle shift
 ; 3/4/19 improved toggle shift functionality, added plans
+; 3/8/19 - 3/9/19 added volume control
 
 /* plans: add hold down to move a bunch, fix the tooltips, add gui with customizable  tooltips and delays between loops
           , move mouse to inside soundcloud window: get mouse pos, tp mouse, perform action, then tp mouse back to original location
@@ -24,7 +26,7 @@ shiftToggle := 0
 /*
 	presses left/right arrow key to either seek or skip the current song
 */
-XButton1::
+*XButton1::
     if (shiftToggle) { 
         send {shift down}
         send {left}
@@ -34,7 +36,7 @@ XButton1::
     }
 return
     
-XButton2::
+*XButton2::
     sleep 50
     if (shiftToggle) { 
         send {shift down}
@@ -51,7 +53,7 @@ return
 	Volume control
 	increase/decrease volume with scroll wheel and if shift is enabled
 */
-~WheelUp::
+~*WheelUp::
     sleep 50
 	if (shiftToggle) {
 		send {shift down}
@@ -60,7 +62,7 @@ return
 	}
 Return
 
-~WheelDown::
+~*WheelDown::
 	if (shiftToggle) {
 		send {shift down}
 		send {down}
@@ -74,7 +76,7 @@ Return
 	change whether the shift toggle is enabled or not
 	displays a tooltip for 3 seconds
 */
-mbutton::
+*mbutton::
    if (shiftToggle) {
       shiftToggle := 0
       ToolTip, Shift control off
@@ -94,6 +96,8 @@ RemoveToolTip:
    ToolTip
 return
 
+;display hotkeys
+f11::ListHotkeys
 
 ;temporary exit
 f12::ExitApp
